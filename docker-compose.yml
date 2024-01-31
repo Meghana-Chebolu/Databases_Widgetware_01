@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  cassandra:
+    build:
+      context: ./cassandra
+    container_name: cassandra
+    ports:
+      - "9042:9042"
+    volumes:
+      - ~/apps/cassandra:/var/lib/cassandra
+
+
+
+
