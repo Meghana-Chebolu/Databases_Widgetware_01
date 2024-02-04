@@ -1,7 +1,16 @@
 #Docker compose commands
 docker compose build
 docker compose up
-
+#Open new terminal
+docker ps
+#Replace the below CONTAINER_ID with yours
+docker cp "Features data set.csv" CONTAINER_ID:/Features\ data\ set.csv
+docker-compose exec cassandra /bin/bash
+cqlsh
+#Open new terminal
+python main.py
+COPY data.featurea (Store, Date, Temperature, Fuel_Price, MarkDown1, MarkDown2, MarkDown3, MarkDown4, MarkDown5, CPI, Unemployment, IsHoliday)
+   ... FROM '/Features data set.csv' WITH DELIMITER=',' AND HEADER = TRUE AND NULL='NA';
 #Getting into the Cassandra Docker container
 docker-compose exec cassandra /bin/bash
 cqlsh

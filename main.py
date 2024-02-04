@@ -21,7 +21,7 @@ def generate_create_table_query(df, table_name, primary_keys):
     return query
 
 # Read CSV file into DataFrame
-df = pd.read_csv("/workspace/Databases_Widgetware_01/cassandra/Features data set.csv")
+df = pd.read_csv("/workspace/Databases_Widgetware_01/Features data set.csv")
 
 # Get column names and data types
 columns_and_dtypes = list(zip(df.columns, df.dtypes))
