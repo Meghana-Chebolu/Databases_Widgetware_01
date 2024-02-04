@@ -1,0 +1,25 @@
+Step-1: Execute the below docker commands in one terminal.
+docker compose build
+docker compose up
+-Make port number 9042 as public.
+
+Step-2: Open a new terminal and run the below command in it.
+python main.py
+-Enter a keyspace and table name of your choice.
+-Then your CREATE TABLE and COPY queries are generated.
+-Copy these queries.
+
+Step-3: 
+docker ps
+#Copy the container id and replace CONTAINER_ID in the below command with the copied container id.
+docker cp "sales_data.csv" CONTAINER_ID:/sales_data.csv
+docker-compose exec cassandra /bin/bash
+cqlsh
+CREATE KEYSPACE data WITH REPLICATION = {  'class' : 'NetworkTopologyStrategy',  'datacenter1' : 1  } ;
+-Execute CREATE TABLE query that is generated in Step-2.
+-Execute COPY query that  is generated in Step-2.
+
+Git commands
+git add .
+git commit -m ""
+git push

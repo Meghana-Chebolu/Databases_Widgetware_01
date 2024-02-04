@@ -30,26 +30,28 @@ def generate_copy_query(table_name, column_names, file_path, with_header=True):
 
 if __name__ == "__main__":
     # Read CSV file into DataFrame
-    file_path = input("Enter the path of the CSV file: ")
+    file_path = 'sales_data.csv'
     df = pd.read_csv(file_path)
 
-    # Get column names and data types
-    columns_and_dtypes = list(zip(df.columns, df.dtypes))
-    for column, dtype in columns_and_dtypes:
-        print(f"{column} {dtype}")
+    # Determine primary key columns
+    primary_key_columns = []
+    for column in df.columns:
+        if df[column].nunique() == len(df):
+            primary_key_columns.append(column)
+            break
+
+    if not primary_key_columns:
+        primary_key_columns = df.columns[:2]
 
     # Get keyspace and table names from user input
     keyspace_name = input("Enter your keyspace name: ")
     table_name = input("Enter table name: ")
 
-    # Get primary key columns (first two columns)
-    primary_keys = df.columns[:2]
-
     # Combine keyspace and table names
     final_table_name = f"{keyspace_name}.{table_name}"
 
     # Generate CREATE TABLE query
-    create_table_query = generate_create_table_query(df, final_table_name, primary_keys)
+    create_table_query = generate_create_table_query(df, final_table_name, primary_key_columns)
 
     # Print the generated CREATE TABLE query
     print("Generated CREATE TABLE query:")
