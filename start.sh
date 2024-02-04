@@ -7,6 +7,12 @@ docker ps
 docker cp "Features data set.csv" CONTAINER_ID:/Features\ data\ set.csv
 docker-compose exec cassandra /bin/bash
 cqlsh
+CREATE KEYSPACE data
+ WITH REPLICATION = {  
+  'class' : 'NetworkTopologyStrategy',  
+  'datacenter1' : 1  
+  } ;
+
 #Open new terminal
 python main.py
 COPY data.featurea (Store, Date, Temperature, Fuel_Price, MarkDown1, MarkDown2, MarkDown3, MarkDown4, MarkDown5, CPI, Unemployment, IsHoliday)
