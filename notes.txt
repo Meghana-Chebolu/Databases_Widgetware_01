@@ -11,11 +11,12 @@ python main.py
 
 Step-3: 
 docker ps
-#Copy the container id and replace CONTAINER_ID in the below command with the copied container id.
+-Copy the container id and replace CONTAINER_ID in the below command with the copied container id.
 docker cp "sales_data.csv" CONTAINER_ID:/sales_data.csv
 docker-compose exec cassandra /bin/bash
 cqlsh
-CREATE KEYSPACE data WITH REPLICATION = {  'class' : 'NetworkTopologyStrategy',  'datacenter1' : 1  } ;
+-Note:  Enter the keyspace name which you have given when you executed the main.py file.
+CREATE KEYSPACE <keyspace_name> WITH REPLICATION = {  'class' : 'NetworkTopologyStrategy',  'datacenter1' : 1  } ;
 -Execute CREATE TABLE query that is generated in Step-2.
 -Execute COPY query that  is generated in Step-2.
 
